@@ -1,0 +1,31 @@
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.pluralsight.repository.CustomerRepository;
+import com.pluralsight.repository.HibernateCustomerRepositoryImpl;
+import com.pluralsight.service.CustomerService;
+import com.pluralsight.service.CustomerServiceImpl;
+
+//to replace the xml file with application config within the java
+//@Configuration will tell spring to go and look for any bean in 
+//this configuration class.
+
+@Configuration
+public class AppConfig {
+	
+	//this bean returns a CustomerServiceImpl.
+	//below we are using the setter injection.
+	@Bean(name="customerService")
+	public CustomerService getCustomerService() {
+		CustomerServiceImpl service =  new CustomerServiceImpl();
+		service.setCustomerRepository(getCustomerRepository());
+		return service;
+	}
+	
+	@Bean(name="customerRepository")
+	public CustomerRepository getCustomerRepository() {
+		return new HibernateCustomerRepositoryImpl();
+	}
+	
+	
+}

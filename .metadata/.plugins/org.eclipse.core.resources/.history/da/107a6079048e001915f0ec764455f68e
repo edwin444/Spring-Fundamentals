@@ -1,0 +1,21 @@
+package com.pluralsight.repository;
+
+import java.awt.List;
+import java.util.ArrayList;
+
+import com.pluralsight.model.Customer;
+
+public class HibernateCustomerRepositoryImpl {
+	
+	public List<Customer> findAll(){
+		List<Customer> customers  = new ArrayList<>();
+		Customer customer = new Customer();
+		
+		customer.setFirstName("Edwin");
+		customer.setLastName("Thomas");
+	    
+		customers.add(customer);
+		return customers;
+	}
+
+}

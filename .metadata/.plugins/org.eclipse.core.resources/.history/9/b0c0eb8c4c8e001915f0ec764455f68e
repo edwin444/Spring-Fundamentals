@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans.xsd">
+	   
+	   <bean name="customerRepository" 
+	         class="com.pluralsight.repository.HibernateCustomerRepositoryImpl">
+	   </bean>
+	   <!-- The ref="beanName" so we are saying pass the above pojo
+	        bean to the setters of the below pojo bean. -->
+	   <!--bean name="customerService"
+	         class="com.pluralsight.service.CustomerServiceImpl">
+	   		<property name="customerRepository" ref="customerRepository"/>
+	   </bean-->
+	   
+	   <!-- bean name="customerService" class="com.pluralsight.service.CustomerServiceImpl">
+	   		<constructor-arg index="0" ref="customerRepository" />
+	   </bean> -->
+	   
+	   <!--  bean name="customerService" class="com.pluralsight.service.CustomerServiceImpl" autowire="constructor">
+	   </bean>-->
+	   
+	   <!-- By type checks all the setter of the below class and sees the argument type and 
+	       comes back and checks the beans to get pojo to that -->
+	   <bean name="customerService" class="com.pluralsight.service.CustomerServiceImpl" autowire="byType">
+	   </bean>
+	   
+	   <bean name="customerService" class="com.pluralsight.service.CustomerServiceImpl" autowire="byName">
+	   </bean>
+</beans>
